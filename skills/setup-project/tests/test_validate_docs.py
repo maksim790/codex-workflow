@@ -1,6 +1,7 @@
 """Behavioral tests against disposable project vaults."""
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -96,6 +97,32 @@ class ValidatorTests(unittest.TestCase):
             (self.root / "docs" / "Outside.md").symlink_to(outside)
         except (OSError, NotImplementedError):
             self.skipTest("symlinks unavailable")
+        result, data = self.run_validator()
+        self.assertEqual(result.returncode, 1)
+        codes = [item["code"] for item in data["findings"]]
+        self.assertIn("outside_root", codes)
+        self.assertNotIn("link_missing", codes)
+
+    @unittest.skipUnless(sys.platform == "win32", "NTFS junctions are Windows-only")
+    def test_junction_outside_root_is_not_read(self):
+        outside = self.root.parent / (self.root.name + "-junction-target")
+        outside.mkdir()
+        self.addCleanup(outside.rmdir)
+        secret = outside / "secret.md"
+        secret.write_text("[secret](missing.md)\n", encoding="utf-8")
+        self.addCleanup(secret.unlink)
+        self.write("docs/Home.md", "# Home\n[Outside](out/secret.md#secret)\n")
+        junction = self.root / "docs" / "out"
+        quoted_junction = str(junction).replace("'", "''")
+        quoted_outside = str(outside).replace("'", "''")
+        created = subprocess.run(
+            ["powershell", "-NoProfile", "-NonInteractive", "-Command",
+             f"New-Item -ItemType Junction -Path '{quoted_junction}' -Target '{quoted_outside}'"],
+            capture_output=True, text=True, check=False,
+        )
+        if created.returncode != 0:
+            self.skipTest("junctions unavailable")
+        self.addCleanup(os.rmdir, junction)
         result, data = self.run_validator()
         self.assertEqual(result.returncode, 1)
         codes = [item["code"] for item in data["findings"]]
