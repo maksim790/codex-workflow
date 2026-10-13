@@ -10,7 +10,7 @@ When a decision determines the proposed boundaries, the skill writes only the ma
 
 When the boundaries are supported by repository evidence and user decisions, the same invocation may create the main ticket and child tickets together. Each child has one verifiable outcome, task-specific criteria, dependencies, and links to the main ticket; the main ticket links back to children. Split by deliverable or contract, not by file, framework layer, or an arbitrary ticket count. Do not duplicate shared requirements across tickets. The main ticket is coordination and final integration context; it is never an implementation task.
 
-The two-digit prefix records the initial suggested sequence. The ordered list in `00-main.md` is the current display order, while explicit dependencies control what can start. If the sequence changes, update the list without automatically renaming files or breaking links. Existing flat tickets are not migrated without a separate request. Bare `$start-task` shows a group as one open entry rather than filling its five-entry list with children.
+The two-digit prefix records the initial suggested sequence. The ordered list in `00-main.md` is the current display order, while explicit dependencies control what can start. If the sequence changes, update the list without automatically renaming files or breaking links. Existing flat tickets are not migrated without a separate request. When bare `$start-task` falls back to listing, it shows a group as one open entry rather than filling its five-entry list with children.
 
 ## Completion
 

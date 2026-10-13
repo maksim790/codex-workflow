@@ -30,12 +30,15 @@
 - [x] Add `prepare-task` and explicit ticket-path handling in `start-task`.
 - [x] Finish the disposable-repository agent scenarios and record what they actually demonstrate in `skills/prepare-task/tests/integration-report.md`.
 - [x] Verify installation and discovery of `prepare-task` without changing global Codex settings.
-- [x] Make bare `$start-task` list the five newest vault tickets; see `skills/start-task/tests/recent-ticket-report.md` for observed behavior and limits.
+- [x] Make the bare `$start-task` fallback list the five newest unfinished vault tickets; see `skills/start-task/tests/recent-ticket-report.md` for earlier listing evidence and limits.
+- [x] Prefer the latest prepared ticket in the current conversation for bare `$start-task`; otherwise list unfinished tickets. See `skills/start-task/tests/context-handoff-report.md` for focused evidence.
 - [x] Resolve ticket names and Tasks-relative paths without requiring the vault prefix; see `skills/start-task/tests/ticket-lookup-report.md` for evidence and limits.
 - [x] Let `prepare-task` break large requests into a main ticket and linked child tickets after architecture decisions; see `skills/prepare-task/tests/decomposition-report.md` for agent evidence and limits.
 - [x] Store new large requests in numbered task groups and close verified tickets with evidence; see `skills/prepare-task/tests/grouped-ticket-report.md` for the focused test record.
 - [x] Route a selected task folder to its first open child without another selection; reserve `00-main.md` for coordination and final verification. See `skills/start-task/tests/group-autostart-report.md` for focused evidence and limits.
 - [x] Move material design decisions to `prepare-task` and reuse their recorded approval in `start-task`; see `docs/superpowers/specs/2026-10-13-task-design-handoff.md`.
+- [x] Approve any required implementation plan during `prepare-task` and reuse it in `start-task` without a second plan-approval question; see `skills/start-task/tests/plan-approval-handoff-report.md` for the focused agent check and its limits.
+- [x] Add a concise final scope review to `prepare-task` before a new or re-prepared ticket becomes `ready`; see `skills/prepare-task/tests/scope-review-report.md` for the disposable-repository check and its limit.
 - [ ] Run an agent handoff test on a real `ready` ticket when agent execution is available; structural validation alone cannot prove fewer repeated questions.
 - [ ] Pilot the two-step workflow on a real, low-risk project task when one is available.
 

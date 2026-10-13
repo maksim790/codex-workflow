@@ -1,5 +1,7 @@
 # Bare `$start-task` ticket listing — 2026-10-13
 
+This records the earlier unconditional-list behavior. The current skill first checks for a usable handoff from `prepare-task` in the same conversation; see [context handoff check](context-handoff-report.md).
+
 ## Baseline
 
 In a disposable Git repository with `AGENTS.md`, `docs/Home.md`, and seven task tickets, the pre-change `start-task` instructions did not list tickets for a bare invocation. The agent asked for a task description or exact ticket path. No fixture files changed during the invocation.
