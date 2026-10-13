@@ -20,6 +20,6 @@ Bare `$start-task` lists up to five recent open standalone tickets or task group
 
 Selecting a task group starts the first open child in its main ticket's current order without asking the user to choose a child. Each invocation handles one child; unmet decisions or dependencies still pause its implementation. `00-main.md` is never an implementation task, even when named directly. After all children are done, selecting the group performs only the final integration verification.
 
-After verified local completion, `start-task` marks the selected ticket `done` and records completion evidence. A grouped main ticket closes only after required children and its integration criteria are verified.
+Preparation resolves material design questions and links approved design and planning artifacts when applicable. On a `ready` ticket, `start-task` checks that those decisions still fit current evidence, then reuses them without asking for the same approval again. New contradictions or missing required approval return to preparation. After verified local completion, `start-task` marks the selected ticket `done` and records completion evidence. A grouped main ticket closes only after required children and its integration criteria are verified.
 
 Design: [`docs/superpowers/specs/2026-10-13-start-task-design.md`](../../docs/superpowers/specs/2026-10-13-start-task-design.md).

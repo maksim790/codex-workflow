@@ -104,7 +104,7 @@ prepare-task <request> -> <vault>/12-Development/Tasks/<ticket>.md
   -> human decision on merge
 ```
 
-`prepare-task` does not implement the request or create a vault. It records the requested outcome, acceptance criteria, relevant evidence, architecture impact, planned checks, and open decisions. `start-task` rereads the named ticket against current source and project instructions before choosing a mode; a ticket marked ready is not proof that its design is approved or its checks ran. Direct `start-task` requests remain supported.
+`prepare-task` does not implement the request or create a vault. It records the requested outcome, acceptance criteria, relevant evidence, architecture impact, planned checks, and open decisions. Material design decisions and applicable approval are resolved during preparation and linked from the ticket. `start-task` rereads the named ticket against current source and project instructions before choosing a mode; status `ready` alone is not proof of approval or completed checks, but recorded approval covering the ticket is reused without asking again. Direct `start-task` requests remain supported.
 
 For a large request, `prepare-task` records overall and integration criteria in `Tasks/<task>/00-main.md`. It creates numbered child tickets in the same folder only when their boundaries follow current evidence and explicit decisions; otherwise it leaves a proposed breakdown in a `needs-decision` main ticket. Each child is a verifiable handoff with dependencies and links to the main ticket. Filename numbers record the initial order; the main list and explicit dependencies govern current sequence.
 

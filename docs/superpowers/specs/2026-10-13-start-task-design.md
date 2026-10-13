@@ -45,7 +45,7 @@ Record the chosen mode and the decisive evidence in the task contract. The mode 
 
 The user may request either mode. The agent explains any safety-driven escalation from Fast to Full. When risk is uncertain, choose Full. A task can escalate during execution when new evidence reveals broader impact; pause only the affected implementation, preserve work already done, revise the plan, and continue independent safe work. Full mode is not automatic permission to create subagents, mutate production state, or publish.
 
-Fast does **not** waive applicable Superpowers requirements. For example, creative feature work still uses `brainstorming` and its design approval gate; a multi-step implementation still uses `writing-plans`; code changes follow `test-driven-development` where applicable. Fast means narrow scope, concise artifacts where the invoked skill permits them, and focused verification. If a required skill's own procedure needs a larger artifact or approval, follow that procedure even in Fast. Do not claim Fast saved steps that the installed skills require.
+Fast does **not** waive applicable Superpowers requirements. For example, creative feature work needs `brainstorming` and its design approval gate, which may already have been completed during preparation; a multi-step implementation needs a `writing-plans` plan, which may likewise be linked from the ticket; code changes follow `test-driven-development` where applicable. Reuse still-applicable approved artifacts without repeating their questions. Fast means narrow scope, concise artifacts where the invoked skill permits them, and focused verification. If a required skill's own procedure needs a larger artifact or approval, follow that procedure even in Fast. Do not claim Fast saved steps that the installed skills require.
 
 ## Task contract and Definition of Done
 
@@ -65,8 +65,8 @@ The orchestrator selects skills by their installed names and trigger conditions;
 
 | Need | Installed Superpowers skill |
 | --- | --- |
-| New behavior or meaningful design choice | `brainstorming` |
-| Multi-step implementation | `writing-plans` |
+| New behavior or meaningful design choice without a still-applicable approved design | `brainstorming` during preparation |
+| Multi-step implementation without a still-applicable plan | `writing-plans` |
 | Isolated implementation | `using-git-worktrees` |
 | Plan execution, when applicable | `executing-plans` or `subagent-driven-development` if the user authorized delegation |
 | Code change and failing checks | `test-driven-development`, `systematic-debugging` |

@@ -3,6 +3,7 @@
 Status: approved in conversation on 2026-10-13 and implemented. See `skills/prepare-task/tests/integration-report.md` for observed behavior and limits.
 
 This records the original single-ticket design. Large-request decomposition was added later; see [large-task decomposition](2026-10-13-prepare-task-decomposition-design.md) for current behavior in that case.
+The design approval handoff was refined later; see [prepared task design handoff](2026-10-13-task-design-handoff.md) for current `ready` semantics.
 
 ## Purpose
 
@@ -22,7 +23,7 @@ The ticket is a task contract. It is not an architecture encyclopedia, ADR, Supe
 
 Use Markdown headings and ordinary relative links that work in Obsidian, GitHub, and other Markdown readers. Include only relevant optional details; never generate empty sections or placeholder claims.
 
-1. **Title and status:** `draft`, `needs-decision`, or `ready`. `ready` means there is no known blocking requirements question, not that implementation or verification has occurred.
+1. **Title and status:** `draft`, `needs-decision`, or `ready`. `ready` means blocking requirements and applicable design gates for the ticket are resolved, not that implementation or verification has occurred.
    Record `Created: YYYY-MM-DDTHH:MM:SSZ` as a UTC timestamp when the ticket is first written; preserve it on later updates. This provides a stable order for the no-argument `$start-task` picker.
 2. **Goal:** observable outcome and reason given by the user; do not invent a business goal.
 3. **Request and evidence:** distinguish explicit user requirements, observed repository facts with source links, and inferences. Code proves current behavior, not desired business behavior.
@@ -41,7 +42,7 @@ Use Markdown headings and ordinary relative links that work in Obsidian, GitHub,
 
 ## `start-task` handoff
 
-When invoked with a ticket reference, `start-task` resolves it within the project's Tasks directory, reads the selected file, confirms it remains inside the target repository and intended vault, and treats it as the task's proposed contract. An existing explicit path takes precedence; ambiguous matches require selection, and missing names show suggestions without starting implementation. It checks status, acceptance criteria, unresolved decisions, relevant source and project instructions. It does not treat the ticket as higher priority than the user's current message or current code. A `needs-decision` or materially stale ticket blocks only dependent implementation; the agent asks for the missing decision or updates the ticket with authorization. A `ready` ticket still undergoes normal Fast/Full routing, applicable Superpowers gates, and three-layer DoD verification.
+When invoked with a ticket reference, `start-task` resolves it within the project's Tasks directory, reads the selected file, confirms it remains inside the target repository and intended vault, and treats it as the task's proposed contract. An existing explicit path takes precedence; ambiguous matches require selection, and missing names show suggestions without starting implementation. It checks status, acceptance criteria, recorded approvals, relevant source and project instructions. It does not treat the ticket as higher priority than the user's current message or current code. A `needs-decision` or materially stale ticket blocks only dependent implementation; the agent asks for the newly missing decision or updates the ticket with authorization. A `ready` ticket still undergoes normal Fast/Full routing, applicable Superpowers procedures, and three-layer DoD verification, while reusing still-applicable approved design and planning artifacts without repeating their questions.
 
 When invoked with only `$start-task`, the agent immediately lists the five newest tickets from the project vault task directory and waits for a number or ticket reference. It performs no task implementation or file write during discovery. Clearly phrased direct task descriptions keep their existing route. Tickets lacking a valid `Created` timestamp use file modification time as an approximate fallback and are labeled accordingly.
 

@@ -35,6 +35,8 @@
 - [x] Let `prepare-task` break large requests into a main ticket and linked child tickets after architecture decisions; see `skills/prepare-task/tests/decomposition-report.md` for agent evidence and limits.
 - [x] Store new large requests in numbered task groups and close verified tickets with evidence; see `skills/prepare-task/tests/grouped-ticket-report.md` for the focused test record.
 - [x] Route a selected task folder to its first open child without another selection; reserve `00-main.md` for coordination and final verification. See `skills/start-task/tests/group-autostart-report.md` for focused evidence and limits.
+- [x] Move material design decisions to `prepare-task` and reuse their recorded approval in `start-task`; see `docs/superpowers/specs/2026-10-13-task-design-handoff.md`.
+- [ ] Run an agent handoff test on a real `ready` ticket when agent execution is available; structural validation alone cannot prove fewer repeated questions.
 - [ ] Pilot the two-step workflow on a real, low-risk project task when one is available.
 
 ## Example opening prompt to Codex
